@@ -1,15 +1,22 @@
 import React from 'react';
-import { observer } from 'mobx-react'; 
+import { observer } from 'mobx-react';
 
-const App = observer(({store}) => {
-  console.log('from App component: ', store.quotes)
-  const quotes = store.quotes;
-  return (
-    <div className="App">
-      <h1>{quotes.map(quote => <p key={quote}>{quote}</p>)}</h1>
-    </div>
-  );
-})
+@observer
+class App extends React.Component {
+  render() {
+
+    console.log('from App component: ', this.props.store.quotes)
+    const quotes = this.props.store.quotes;
+    return (
+      <div className="App">
+        <p>All Quotes:</p>
+        <h2>{quotes.map(quote => <p key={quote}>{quote}</p>)}</h2>
+        <p>Short Quotes:</p>
+        <h2>{this.props.store.shortQuotes.map(quote => <p key={quote}>{quote}</p>)}</h2>
+      </div>
+    );
+  }
+}
 
 export default App;
 
