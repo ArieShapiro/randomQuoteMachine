@@ -1,13 +1,16 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 // import axios from 'axios';
 import quotes from '../quotes.js';
 
 class QuotesStore {
     @observable quotes = quotes;
+    @observable chosen = this.quotes[Math.floor(Math.random()*this.quotes.length)];
 
-    @computed get shortQuotes() {
-        return this.quotes.filter(quote => quote.split(' ').length <= 4)
+    @action chooseRandomQuote() {
+       this.chosen =  this.quotes[Math.floor(Math.random()*this.quotes.length)];
+       console.log('from store: ', this.chose)
     }
+
 }
 
 const store = window.store = new QuotesStore;
@@ -16,21 +19,4 @@ export default store;
 
 
 
-// export default new QuotesStore;
-
-
-
-
-
-
-
-
-
-/////////////////////////////////////////////
-// let store = window.store = observable({
-//     quotes: quotes
-// });
-
-// export default store;
-////////////////////////////////////////////
 

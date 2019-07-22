@@ -3,16 +3,16 @@ import { observer } from 'mobx-react';
 
 @observer
 class App extends React.Component {
+  onNewQuote = () => {
+    console.log('onNewQuote...');
+    this.props.store.chooseRandomQuote();
+  }
   render() {
-
-    console.log('from App component: ', this.props.store.quotes)
-    const quotes = this.props.store.quotes;
+    const quote = this.props.store.chosen;
     return (
       <div className="App">
-        <p>All Quotes:</p>
-        <h2>{quotes.map(quote => <p key={quote}>{quote}</p>)}</h2>
-        <p>Short Quotes:</p>
-        <h2>{this.props.store.shortQuotes.map(quote => <p key={quote}>{quote}</p>)}</h2>
+        <h2>{quote}</h2>
+        <button onClick={this.onNewQuote}>New Quote</button>
       </div>
     );
   }

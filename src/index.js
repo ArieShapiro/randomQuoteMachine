@@ -5,8 +5,6 @@ import * as serviceWorker from './serviceWorker';
 
 import store from './store/QuotesStore';
 
-console.log('from index.js: ', store)
-
 ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
