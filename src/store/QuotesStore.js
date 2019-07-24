@@ -2,13 +2,16 @@ import { observable, computed, action } from 'mobx';
 // import axios from 'axios';
 import quotes from '../quotes.js';
 
+const colors = ['green', 'red', 'blue', 'lightblue', 'pink', 'yellow', 'gray', 'orange', 'hotpink', 'coral'];
+
 class QuotesStore {
     @observable quotes = quotes;
-    @observable chosen = this.quotes[Math.floor(Math.random()*this.quotes.length)];
+    @observable chosenQuote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
+    @observable chosenColor = colors[Math.floor(Math.random() * colors.length)];
 
-    @action chooseRandomQuote() {
-       this.chosen =  this.quotes[Math.floor(Math.random()*this.quotes.length)];
-       console.log('from store: ', this.chose)
+    @action chooseRandomQuoteAndColor() {
+        this.chosenQuote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
+        this.chosenColor = colors[Math.floor(Math.random() * colors.length)];
     }
 
 }
